@@ -1,0 +1,45 @@
+{
+  "name": "angular2-research",
+  "version": "0.0.0",
+  "description": "Angular2 research project",
+  "repository": {
+    "url": "https://github.com/destyjustc/agl2-research"
+  },
+  "scripts": {
+    "build.dev": "gulp build.dev",
+    "build.prod": "gulp build.prod",
+    "clean": "gulp clean",
+    "serve.prod": "gulp serve.prod",
+    "start": "gulp serve.dev",
+    "test": "gulp test"
+  },
+  "author": "NorthStar UI Team",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "del": "^2.2.0",
+    "express": "~4.13.1",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-tslint": "^4.3.2",
+    "gulp-typescript": "~2.10.0",
+    "gulp-util": "^3.0.7",
+    "ng2lint": "0.0.6",
+    "open": "0.0.5",
+    "run-sequence": "^1.1.0",
+    "slash": "~1.0.0",
+    "ts-node": "^0.5.4",
+    "tslint": "^3.3.0",
+    "typescript": "~1.7.3",
+    "typings": "^0.6.2",
+    "yargs": "^3.32.0"
+  },
+  "dependencies": {
+    "angular2": "2.0.0-beta.7",
+    "es6-module-loader": "^0.17.8",
+    "es6-shim": "^0.33.3",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.2",
+    "systemjs": "~0.19.18",
+    "zone.js": "0.5.15"
+  }
+}
