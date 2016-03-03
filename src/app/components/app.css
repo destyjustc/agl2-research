@@ -31,3 +31,24 @@
   outline: none;
 }
 
+/*added by jing for navigation header*/
+nav {
+  background-color: #282828;
+  height:45px;
+}
+a {
+  color: white;
+  display: inline-block;
+  width: 20%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 200%;
+  font-family: verdana;
+  text-decoration: none;
+}
+
+.router-link-active {
+  /*text-decoration: underline;*/
+  border-bottom: 8px solid white;
+  padding-bottom: 30px;
+}
