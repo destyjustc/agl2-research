@@ -1,46 +1,63 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <script>document.write('<base href="' + document.location + '" />');</script>
-    <title>Angular 2 Tour of Heroes</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="app/main.css">
-    <!-- IE temporary solution for Angular2 beta -->
-    <script type="text/javascript">
-      if (!Object.hasOwnProperty('name')) {
-        Object.defineProperty(Function.prototype, 'name', {
-          get: function() {
-            var matches = this.toString().match(/^\s*function\s*(\S*)\s*\(/);
-            var name = matches && matches.length > 1 ? matches[1] : "";
-            // For better performance only parse once, and then cache the
-            // result through a new accessor for repeated access.
-            Object.defineProperty(this, 'name', {value: name});
-            return name;
-          }
-        });
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><%= APP_TITLE %></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- inject:css -->
+  <!-- endinject -->
+</head>
+<body>
+
+  <app>Loading...</app>
+
+  <script>
+  // function.name (all IE)
+  // Remove once https://github.com/angular/angular/issues/6501 is fixed.
+  /*! @source http://stackoverflow.com/questions/6903762/function-name-not-supported-in-ie*/
+  if (!Object.hasOwnProperty('name')) {
+    Object.defineProperty(Function.prototype, 'name', {
+      get: function() {
+        var matches = this.toString().match(/^\s*function\s*(\S*)\s*\(/);
+        var name = matches && matches.length > 1 ? matches[1] : "";
+        // For better performance only parse once, and then cache the
+        // result through a new accessor for repeated access.
+        Object.defineProperty(this, 'name', {value: name});
+        return name;
       }
-    </script>
-    <!-- IE required polyfills, in this exact order -->
-    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
-    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
-    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <script src="node_modules/typescript/lib/typescript.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
-    <script src="node_modules/angular2/bundles/router.dev.js"></script>
-    <script>
-      System.config({
-        transpiler: 'typescript', 
-        "defaultJSExtensions": 'js',
-        typescriptOptions: { emitDecoratorMetadata: true }, 
-        // packages: {'angular2': {defaultExtension: 'ts'}} 
-      });
-      System.import('main.js')
-            .then(null, console.error.bind(console));
-    </script>
-  </head>
-  <body>
-    <the-app>Loading...</the-app>
-  </body>
+    });
+  }
+  </script>
+  
+  <script>
+  // Fixes undefined module function in SystemJS bundle
+  function module() {}
+  </script>
+
+  <!-- shims:js -->
+  <!-- endinject -->
+
+  <% if (ENV === 'dev') { %>
+  <script>System.config(<%= JSON.stringify(SYSTEM_CONFIG) %>)</script>
+  <% } %>
+
+  <!-- libs:js -->
+  <!-- endinject -->
+
+  <!-- inject:js -->
+  <!-- endinject -->
+
+  <% if (ENV === 'dev') { %>
+  <script>
+  System.import('<%= BOOTSTRAP_MODULE %>')
+    .catch(function (e) {
+      console.error(e,
+        'Report this error at https://github.com/mgechev/angular2-seed/issues');
+    });
+  </script>
+  <% } %>
+
+</body>
 </html>

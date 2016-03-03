@@ -1,0 +1,11 @@
+<p>
+  Test Framework: 
+</p>
+<form (submit)="addName()">
+  Add more: 
+  <input [(ngModel)]="newName">
+  <button type="submit">Add</button>
+</form>
+<ul>
+  <li *ngFor="#name of list.get()">{{name}}</li>
+</ul>

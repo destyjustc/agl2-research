@@ -1,110 +1,82 @@
 import * as gulp from 'gulp';
-import * as del from 'del';
-import * as gulpLoadPlugins from 'gulp-load-plugins';
-const typescript = require('gulp-typescript');
-import {DIST_DIR, PROD_DEST, TMP_DIR, APP_SRC} from './gulp/config';
-import {join} from 'path';
-const tscConfig = require('./tsconfig.json');
-var tslint = require('gulp-tslint');
-var less = require('gulp-less');
-var browserSync = require('browser-sync');
-var superstatic = require('superstatic');
-var replace = require('gulp-replace');
+import {runSequence, task} from './tools/utils';
 
-var plugins = gulpLoadPlugins();
+// --------------
+// Clean (override).
+gulp.task('clean',       task('clean', 'all'));
+gulp.task('clean.dist',  task('clean', 'dist'));
+gulp.task('clean.test',  task('clean', 'test'));
+gulp.task('clean.tmp',   task('clean', 'tmp'));
 
-export function task(taskname: string, option?: string) {
-  return require(join('.', 'gulp', taskname))(gulp, gulpLoadPlugins(), option);
-}
+gulp.task('check.versions', task('check.versions'));
+gulp.task('build.docs', task('build.docs'));
+gulp.task('serve.docs', task('serve.docs'));
 
+// --------------
+// Postinstall.
+gulp.task('postinstall', done =>
+  runSequence('clean',
+              'npm',
+              done));
 
-gulp.task('clean', () => {
-	return del(PROD_DEST + '/**', { force: true});
-});
+// --------------
+// Build dev.
+gulp.task('build.dev', done =>
+  runSequence('clean.dist',
+              'tslint',
+              'build.assets.dev',
+              'build.js.dev',
+              'build.e2e_test',
+              'build.index.dev',
+              done));
 
-gulp.task('ts-lint', () => {
-	let src = [
-		'typings/browser.d.ts',
-		'typings/main.d.ts',
-		join(APP_SRC, '**/*.ts'),
-	];
-	return gulp.src(src)
-		.pipe(tslint());
-});
+// --------------
+// Build prod.
+gulp.task('build.prod', done =>
+  runSequence('clean.dist',
+              'clean.tmp',
+              'tslint',
+              'build.assets.prod',
+              'build.html_css.prod',
+              'build.js.prod',
+              'build.bundles',
+              'build.bundles.app',
+              'build.index.prod',
+              done));
 
-gulp.task('compile-ts', () =>{
-	del(PROD_DEST);
-	let src = [
-		'typings/browser.d.ts',
-		join(APP_SRC, '**/*.ts'),
-		join(APP_SRC, 'main.ts'),
-	];
-	let result = gulp.src(src)
-		.pipe(typescript(tscConfig.compilerOptions))
-		.pipe(gulp.dest(PROD_DEST));
-	return result;
-});
+// --------------
+// Watch.
+gulp.task('build.dev.watch', done =>
+  runSequence('build.dev',
+              'watch.dev',
+              done));
 
-gulp.task('templates', () => {
-	let src = [
-		join(APP_SRC, '**/*.html'),
-		'!'+join(APP_SRC, 'index.html')
-	];
-	let result = gulp.src(src)
-		.pipe(gulp.dest(PROD_DEST));
-	return result;
-});
+gulp.task('build.test.watch', done =>
+  runSequence('build.test',
+              'watch.test',
+              done));
 
-gulp.task('compile-less', () => {
-	let src = [
-		join(APP_SRC, '**/*.less'),
-	];
-	let result = gulp.src(src)
-		.pipe(less())
-		.pipe(gulp.dest(PROD_DEST));
-	return result;
-});
+// --------------
+// Test.
+gulp.task('test', done =>
+  runSequence('clean.test',
+              'tslint',
+              'build.test',
+              'karma.start',
+              done));
 
-gulp.task('modify-index', function () {
-	let src = join(APP_SRC, 'index.html');
-  	return gulp.src(src)
-    	// .pipe(replace(JS_LIBS_DEV, JS_LIBS_PROD))
-		.pipe(gulp.dest(PROD_DEST));
-});
+// --------------
+// Serve.
+gulp.task('serve', done =>
+  runSequence('build.dev',
+              'server.start',
+              'watch.serve',
+              done));
 
-gulp.task('dev', () => {
-	browserSync({
-	    port: 3002,
-	    file: ['index.html', '**/*.js', '**/*.ts', '**/*.html', '**/*.less'],
-	    injectChange: true,
-	    logFileChange: false,
-	    logLevel: 'silent',
-	    notify: true,
-	    reloadDelay: 0,
-	    server: {
-		    baseDir: './',
-		    middleware: superstatic({debug: false})
-	    }
-  	});
-  	// gulp.watch(['app/**/*.less', 'app/**/*.html', 'app/**/*.ts', 'app/**/*.js', 'index.html'], ['reload']);
-});
-
-var JS_LIBS_PROD = `
-    <script src="lib/es6-shim.min.js"></script>
-    <script src="lib/system-polyfills.js"></script>
-    <script src="lib/angular2-polyfills.js"></script>
-    <script src="lib/system.src.js"></script>
-    <script src="lib/typescript.js"></script>
-    <script src="lib/Rx.js"></script>
-    <script src="lib/angular2.dev.js"></script>
-    <script src="lib/router.dev.js"></script>`;
-
-var JS_LIBS_DEV = `
-    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
-    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
-    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <script src="node_modules/typescript/lib/typescript.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
-    <script src="node_modules/angular2/bundles/router.dev.js"></script>`;
+// --------------
+// Docs
+// Disabled until https://github.com/sebastian-lenz/typedoc/issues/162 gets resolved
+gulp.task('docs', done =>
+  runSequence('build.docs',
+              'serve.docs',
+              done));

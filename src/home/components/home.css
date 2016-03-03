@@ -1,0 +1,24 @@
+.note {
+  color: #a8a8a8;
+}
+smile {
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: bottom;
+  background: url("./assets/img/smile.png");
+}
+.topChart{
+	background-color: #FFFFFF;
+	padding: 20px;
+	margin: 0 25px 25px 25px;
+	box-shadow: 10px 10px 5px #888888;
+}
+.bottomTable{
+	margin: 0 15px 25px 15px;
+}
+.bottomChart{
+	background-color: #FFFFFF;
+	margin: 0 15px 0 15px;
+	box-shadow: 10px 10px 5px #888888;
+}
