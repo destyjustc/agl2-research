@@ -6,6 +6,8 @@ import {
 
 import {HomeCmp} from '../../home/components/home';
 import {AboutCmp} from '../../about/components/about';
+import {EventReviewCmp} from '../../event-review/components/event-review';
+import {AssetInvestigationCmp} from '../../asset-investigation/components/asset-investigation';
 import {NameList} from '../../shared/services/name_list';
 
 @Component({
@@ -18,7 +20,9 @@ import {NameList} from '../../shared/services/name_list';
   directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
-  { path: '/', component: HomeCmp, name: 'Home' },
-  { path: '/about', component: AboutCmp, name: 'About' }
+  { path: '/dashboard', component: HomeCmp, name: 'Dashboard', useAsDefault: true },
+  { path: '/search', component: AboutCmp, name: 'Search' },
+  { path: '/eventReview', name: 'EventReview', component: EventReviewCmp },
+  { path: '/assetInvestigation', name: 'AssetInvestigation', component: AssetInvestigationCmp },
 ])
 export class AppCmp {}
