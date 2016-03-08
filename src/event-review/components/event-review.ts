@@ -9,7 +9,7 @@ import {Ng2Highcharts} from 'ng2-highcharts/ng2-highcharts';
 	directives: [Ng2Highcharts]
 
 })
-export class EventReviewCmp {
+export class EventReviewComponent {
 	chartBar = {
 		chart: {
 			type: 'column'
