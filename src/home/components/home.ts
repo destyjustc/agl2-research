@@ -10,27 +10,27 @@ import {Ng2Highcharts, Ng2Highmaps, Ng2Highstocks} from 'ng2-highcharts/ng2-high
   directives: [Ng2Highcharts, Ng2Highmaps, Ng2Highstocks]
 })
 export class HomeCmp implements OnInit {
-
+	windowSize = ['590px', '590px', '590px'];
 	chartOptions = {
 		chart: {
 			type: 'line'
 		},
 		title: {
-			text: 'Fruit Consumption'
+			text: 'Security Events'
 		},
 		xAxis: {
-			categories: ['Apples', 'Bananas', 'Oranges']
+			categories: ['Low', 'Medium', 'High']
 		},
 		yAxis: {
 			title: {
-				text: 'Fruit eaten'
+				text: 'Security Events'
 			}
 		},
 		series: [{
-			name: 'Jane',
+			name: 'KEV-U1000',
 			data: [1, 0, 4]
 		}, {
-				name: 'John',
+				name: 'KEA-U800',
 				data: [5, 7, 3]
 			}]
 	};
@@ -38,28 +38,29 @@ export class HomeCmp implements OnInit {
 		chart: {
 			type: 'column'
 		},
+		title: {
+			text: 'Recent System Usage Check'
+		},
 		xAxis: {
 			categories: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 		},
+		yAxis: {
+            floor: 0,
+            ceiling: 100,
+			title: {
+				text: 'Percentage (%)'
+			}
+		},
 		series: [
 			{
-				name: 'NC',
-				data: [7057, 6858, 6643, 6570, 6115, 107, 31, 635, 203, 2, 2]
+				name: 'CPU',
+				data: [26, 32, 15, 34, 33, 12, 22, 56, 98, 53, 40]
 			}, {
-				name: 'OK',
-				data: [54047, 52484, 50591, 49479, 46677, 33, 156, 947, 408, 6, 2]
+				name: 'Memory',
+				data: [45, 67, 30, 64, 67, 25, 36, 93, 99, 87, 68]
 			}, {
-				name: 'KO',
-				data: [11388, 11115, 10742, 10757, 10290, 973, 914, 4054, 732, 34, 2]
-			}, {
-				name: 'VALID',
-				data: [8836, 8509, 8255, 7760, 7621, 973, 914, 4054, 732, 34, 2]
-			}, {
-				name: 'CHECK',
-				data: [115, 162, 150, 187, 172, 973, 914, 4054, 732, 34, 2]
-			}, {
-				name: 'COR',
-				data: [12566, 12116, 11446, 10749, 10439, 973, 914, 4054, 732, 34, 2]
+				name: 'Disk Space',
+				data: [14, 15, 15, 17, 19, 19, 20, 31, 45, 50, 52]
 			}
 		]
 	};
@@ -134,6 +135,7 @@ export class HomeCmp implements OnInit {
 
 	constructor(private http: Http) { }
 
+
 	ngOnInit(): any {
 		setInterval(() => {
 			this.chartOptions = {
@@ -141,25 +143,25 @@ export class HomeCmp implements OnInit {
 					type: 'line'
 				},
 				title: {
-					text: 'Fruit Consumption'
+					text: 'Security Events'
 				},
 				xAxis: {
-					categories: ['Apples', 'Bananas', 'Oranges']
+					categories: ['Low', 'Medium', 'High']
 				},
 				yAxis: {
 					title: {
-						text: 'Fruit eaten'
+						text: 'Security Events Count'
 					}
 				},
 				series: [{
-					name: 'Jane',
+					name: 'KEV-U1000',
 					data: [Math.trunc(Math.random() * 10), Math.trunc(Math.random() * 10), Math.trunc(Math.random() * 10)]
 				}, {
-						name: 'John',
+						name: 'KEA-U800',
 						data: [Math.trunc(Math.random() * 10), Math.trunc(Math.random() * 10), Math.trunc(Math.random() * 10)]
 					}]
 			};
-		}, 3000);
+		}, 2000);
 
 		//Stock
 		this.http.get('./assets/aapl-c.json').subscribe(
@@ -221,5 +223,72 @@ export class HomeCmp implements OnInit {
 				console.error('Somethin went wrong', err);
 			}
 		);
+	}
+
+	changeToMainSize(str:string) {
+		switch(str) {
+			case 'chartOptions':
+				this.windowSize = ['900px', '350px', '350px'];
+				this.chartOptions = {
+					chart: {
+						type: 'line'
+					},
+					title: {
+						text: 'Security Events'
+					},
+					xAxis: {
+						categories: ['Low', 'Medium', 'High']
+					},
+					yAxis: {
+						title: {
+							text: 'Security Events'
+						}
+					},
+					series: [{
+						name: 'KEV-U1000',
+						data: [1, 0, 4]
+					}, {
+							name: 'KEA-U800',
+							data: [5, 7, 3]
+						}]
+				};
+				break;
+			case 'chartBar':
+				this.windowSize = ['350px', '900px', '350px'];
+				this.chartBar = {
+					chart: {
+						type: 'column'
+					},
+					title: {
+						text: 'Recent System Usage Check'
+					},
+					xAxis: {
+						categories: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+					},
+					yAxis: {
+			            floor: 0,
+			            ceiling: 100,
+						title: {
+							text: 'Percentage (%)'
+						}
+					},
+					series: [
+						{
+							name: 'CPU',
+							data: [26, 32, 15, 34, 33, 12, 22, 56, 98, 53, 40]
+						}, {
+							name: 'Memory',
+							data: [45, 67, 30, 64, 67, 25, 36, 93, 99, 87, 68]
+						}, {
+							name: 'Disk Space',
+							data: [14, 15, 15, 17, 19, 19, 20, 31, 45, 50, 52]
+						}
+					]
+				};
+				break;
+			case 'chartMap':
+				this.windowSize = ['350px', '350px', '900px'];
+				break;
+		}
 	}
 }

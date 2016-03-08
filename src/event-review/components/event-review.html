@@ -1,0 +1,40 @@
+<p class="note">
+	EVENTS
+</p>
+
+<table width="99%">
+	<tr>
+		<td width="99%">
+			<div [ng2-highcharts]="chartBar" class="graph topChart"></div>
+		</td>
+	</tr>
+</table>
+<br />
+<div class="dataTable">
+	<div style="float: left;">
+		<a href="#tableRow_1" style="font-size: 16px; color: #444444; width: 40px;"> 1st </a> 
+		<a href="#tableRow_99" style="font-size: 16px; color: #444444; width: 40px;"> 100th </a> 
+		<a href="#tableRow_199" style="font-size: 16px; color: #444444; width: 40px;"> 200th </a> 
+		<a href="#tableRow_299" style="font-size: 16px; color: #444444; width: 40px;"> 300th </a>
+	</div>
+	<div style="float: right">
+		<input #search placeholder="local search..." />
+		<button (click)="localSearch(search.value); stopLazyLoad(search.value);">Search</button> Lazy Load: {{lazyLoad}}
+	</div>
+	<table width="96%" (window:scroll)="onScroll($event)">
+		<tr width="99%">
+			<th></th>
+			<th>Name</th>
+			<th>Time</th>
+			<th>IP</th>
+			<th>Info</th>
+		</tr>
+		<tr *ngFor="#item of tableData; #i=index" width="99%">
+			<td width="10%">{{i}}<a name="tableRow_{{i}}"></a></td>
+			<td>{{item.name}}</td>
+			<td>{{item.time}}</td>
+			<td>{{item.ip}}</td>
+			<td>{{item.info}}</td>
+		</tr>
+	</table>
+</div>

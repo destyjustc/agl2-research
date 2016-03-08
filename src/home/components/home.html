@@ -11,13 +11,13 @@
 </table>
 <table class="bottomTable">
 	<tr>
-		<td width="33%">
+		<td [style.min-width]="windowSize[0]" [style.max-width]="windowSize[0]" (click)="changeToMainSize('chartOptions');">
 			<div [ng2-highcharts]="chartOptions" class="graph bottomChart"></div>
 		</td>
-		<td width="33%">
+		<td [style.min-width]="windowSize[1]" [style.max-width]="windowSize[1]" (click)="changeToMainSize('chartBar')">
 			<div [ng2-highcharts]="chartBar" class="graph bottomChart"></div>
 		</td>
-		<td width="33%">
+		<td [style.min-width]="windowSize[2]" [style.max-width]="windowSize[2]" (click)="changeToMainSize('chartMap')">
 			<div [ng2-highmaps]="chartMap" class="graph bottomChart"></div>
 		</td>
 	</tr>
