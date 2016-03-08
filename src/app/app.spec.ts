@@ -13,7 +13,7 @@ import {SpyLocation} from 'angular2/src/mock/location_mock';
 import {RootRouter} from 'angular2/src/router/router';
 
 import {DOM} from 'angular2/src/platform/dom/dom_adapter';
-import {AppComponent} from './app';
+import {AppComponent} from './app.component';
 
 export function main() {
 
@@ -24,7 +24,7 @@ export function main() {
       RouteRegistry,
       DirectiveResolver,
       provide(Location, {useClass: SpyLocation}),
-      provide(ROUTER_PRIMARY_COMPONENT, {useValue: AppCmp}),
+      provide(ROUTER_PRIMARY_COMPONENT, { useValue: AppComponent }),
       provide(Router, {useClass: RootRouter})
     ]);
 

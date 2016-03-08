@@ -1,4 +1,4 @@
-import {NameList} from './name_list';
+import {NameList} from './name-list.service';
 
 export function main() {
   describe('NameList Service', () => {

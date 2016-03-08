@@ -4,11 +4,11 @@ import {
   ROUTER_DIRECTIVES
 } from 'angular2/router';
 
-import {DashboardComponent} from '../../dashboard/components/dashboard';
-import {SearchComponent} from '../../search/components/search';
-import {EventReviewComponent} from '../../event-review/components/event-review';
-import {AssetInvestigationComponent} from '../../asset-investigation/components/asset-investigation';
-import {NameList} from '../../shared/services/name_list';
+import {DashboardComponent} from '../dashboard/dashboard.component';
+import {SearchComponent} from '../search/search.component';
+import {EventReviewComponent} from '../event-review/event-review.component';
+import {AssetInvestigationComponent} from '../asset-investigation/asset-investigation.component';
+import {NameList} from '../common/services/name-list.service';
 
 @Component({
   selector: 'app',

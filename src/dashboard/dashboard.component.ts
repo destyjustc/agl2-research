@@ -3,7 +3,7 @@ import {Http} from 'angular2/http';
 import {Ng2Highcharts, Ng2Highmaps, Ng2Highstocks} from 'ng2-highcharts/ng2-highcharts';
 
 @Component({
-  selector: 'dashboard',
+  selector: 'app-selector-dashboard',
   moduleId: module.id,
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css'],

@@ -7,8 +7,8 @@ import {
 } from 'angular2/testing';
 import {Component} from 'angular2/core';
 import {DOM} from 'angular2/src/platform/dom/dom_adapter';
-import {SearchComponent} from './search';
-import {NameList} from '../../shared/services/name_list';
+import {SearchComponent} from './search.component';
+import {NameList} from '../../common/services/name-list.service';
 
 
 export function main() {

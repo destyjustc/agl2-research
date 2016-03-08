@@ -7,7 +7,7 @@ import {
 } from 'angular2/testing';
 import {Component} from 'angular2/core';
 import {DOM} from 'angular2/src/platform/dom/dom_adapter';
-import {DashboardComponent} from './dashboard';
+import {DashboardComponent} from './dashboard.component';
 
 export function main() {
   describe('Dashboard component', () => {
