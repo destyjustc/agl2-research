@@ -25,4 +25,4 @@ import {NameList} from '../../shared/services/name_list';
   { path: '/eventReview', name: 'EventReview', component: EventReviewCmp },
   { path: '/assetInvestigation', name: 'AssetInvestigation', component: AssetInvestigationCmp },
 ])
-export class AppCmp {}
+export class AppComponent {}

@@ -13,7 +13,7 @@ import {SpyLocation} from 'angular2/src/mock/location_mock';
 import {RootRouter} from 'angular2/src/router/router';
 
 import {DOM} from 'angular2/src/platform/dom/dom_adapter';
-import {AppCmp} from './app';
+import {AppComponent} from './app';
 
 export function main() {
 
@@ -43,6 +43,6 @@ export function main() {
 @Component({
   selector: 'test-cmp',
   template: '<app></app>',
-  directives: [AppCmp]
+  directives: [AppComponent]
 })
 class TestComponent {}
