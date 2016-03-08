@@ -4,7 +4,7 @@ import {
   ROUTER_DIRECTIVES
 } from 'angular2/router';
 
-import {HomeCmp} from '../../home/components/home';
+import {DashboardComponent} from '../../dashboard/components/dashboard';
 import {SearchComponent} from '../../search/components/search';
 import {EventReviewCmp} from '../../event-review/components/event-review';
 import {AssetInvestigationCmp} from '../../asset-investigation/components/asset-investigation';
@@ -20,7 +20,7 @@ import {NameList} from '../../shared/services/name_list';
   directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
-  { path: '/dashboard', component: HomeCmp, name: 'Dashboard', useAsDefault: true },
+  { path: '/dashboard', component: DashboardComponent, name: 'Dashboard', useAsDefault: true },
   { path: '/search', component: SearchComponent, name: 'Search' },
   { path: '/eventReview', name: 'EventReview', component: EventReviewCmp },
   { path: '/assetInvestigation', name: 'AssetInvestigation', component: AssetInvestigationCmp },

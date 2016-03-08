@@ -7,17 +7,17 @@ import {
 } from 'angular2/testing';
 import {Component} from 'angular2/core';
 import {DOM} from 'angular2/src/platform/dom/dom_adapter';
-import {HomeCmp} from './home';
+import {DashboardComponent} from './dashboard';
 
 export function main() {
-  describe('Home component', () => {
+  describe('Dashboard component', () => {
     it('should work',
       injectAsync([TestComponentBuilder], (tcb: TestComponentBuilder) => {
         return tcb.createAsync(TestComponent)
           .then((rootTC) => {
-            let homeDOMEl = rootTC.debugElement.children[0].nativeElement;
+            let dashboardDOMEl = rootTC.debugElement.children[0].nativeElement;
 
-            expect(DOM.querySelectorAll(homeDOMEl, 'h1')[0].textContent).toEqual('Howdy!');
+            expect(DOM.querySelectorAll(dashboardDOMEl, 'h1')[0].textContent).toEqual('Howdy!');
           });
       }));
   });
@@ -25,7 +25,7 @@ export function main() {
 
 @Component({
   selector: 'test-cmp',
-  directives: [HomeCmp],
-  template: '<home></home>'
+  directives: [DashboardComponent],
+  template: '<dashboard></dashboard>'
 })
-class TestComponent {}
+class TestComponent { }
