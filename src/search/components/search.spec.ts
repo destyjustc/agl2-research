@@ -7,36 +7,36 @@ import {
 } from 'angular2/testing';
 import {Component} from 'angular2/core';
 import {DOM} from 'angular2/src/platform/dom/dom_adapter';
-import {AboutCmp} from './about';
+import {SearchComponent} from './search';
 import {NameList} from '../../shared/services/name_list';
 
 
 export function main() {
-  describe('About component', () => {
+  describe('Search component', () => {
     it('should work',
       injectAsync([TestComponentBuilder], (tcb: TestComponentBuilder) => {
         return tcb.createAsync(TestComponent)
           .then(rootTC => {
             rootTC.detectChanges();
 
-            let aboutInstance = rootTC.debugElement.children[0].componentInstance;
-            let aboutDOMEl = rootTC.debugElement.children[0].nativeElement;
+            let searchInstance = rootTC.debugElement.children[0].componentInstance;
+            let searchDOMEl = rootTC.debugElement.children[0].nativeElement;
             let nameListLen = function () {
-              return aboutInstance.list.names.length;
+              return searchInstance.list.names.length;
             };
 
-            expect(aboutInstance.list).toEqual(jasmine.any(NameList));
+            expect(searchInstance.list).toEqual(jasmine.any(NameList));
             expect(nameListLen()).toEqual(4);
-            expect(DOM.querySelectorAll(aboutDOMEl, 'li').length).toEqual(nameListLen());
+            expect(DOM.querySelectorAll(searchDOMEl, 'li').length).toEqual(nameListLen());
 
-            aboutInstance.newName = 'Minko';
-            aboutInstance.addName();
+            searchInstance.newName = 'Minko';
+            searchInstance.addName();
             rootTC.detectChanges();
 
             expect(nameListLen()).toEqual(5);
-            expect(DOM.querySelectorAll(aboutDOMEl, 'li').length).toEqual(nameListLen());
+            expect(DOM.querySelectorAll(searchDOMEl, 'li').length).toEqual(nameListLen());
 
-            expect(DOM.querySelectorAll(aboutDOMEl, 'li')[4].textContent).toEqual('Minko');
+            expect(DOM.querySelectorAll(searchDOMEl, 'li')[4].textContent).toEqual('Minko');
           });
       }));
   });
@@ -45,7 +45,7 @@ export function main() {
 @Component({
   providers: [NameList],
   selector: 'test-cmp',
-  template: '<about></about>',
-  directives: [AboutCmp]
+  template: '<search></search>',
+  directives: [SearchComponent]
 })
 class TestComponent {}
