@@ -1,21 +1,21 @@
-describe('Home', function() {
+describe('Dashboard', function() {
 
   beforeEach(function() {
     browser.get('');
   });
 
   it('should have correct h1', function() {
-      expect(element(by.css('app section home h1')).getText())
+      expect(element(by.css('app section dashboard h1')).getText())
       .toEqual('Howdy!');
   });
 
   it('should have correct h2', function() {
-      expect(element(by.css('app section home h2')).getText())
+      expect(element(by.css('app section dashboard h2')).getText())
       .toEqual('Gratz!');
   });
 
   it('should have correct success msg', function() {
-      expect(element(by.css('app section home p')).getText())
+      expect(element(by.css('app section dashboard p')).getText())
       .toEqual('Your deployment of Angular 2 Seed worked perfectly! Click about (above) to get your reward!');
   });
 });
