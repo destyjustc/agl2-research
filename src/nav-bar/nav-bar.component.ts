@@ -5,8 +5,8 @@ import {
 
 @Component({
 	selector: 'app-selector-nav-bar',
-	templateUrl: 'nav-bar/nav-bar.html',
-	styleUrls: ['nav-bar/nav-bar.css'],
+	templateUrl: '../nav-bar/nav-bar.html',
+	styleUrls: ['../nav-bar/nav-bar.css'],
 	directives: [ROUTER_DIRECTIVES]
 })
 
