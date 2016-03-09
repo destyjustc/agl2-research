@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 
-import {NameList} from '../common/services/name-list.service';
+import {NameListService} from '../common/services/name-list.service';
 
 @Component({
   selector: 'app-selector-search',
@@ -11,7 +11,7 @@ import {NameList} from '../common/services/name-list.service';
 })
 export class SearchComponent {
   newName: string;
-  constructor(public list: NameList) { }
+  constructor(public list: NameListService) { }
 
   addName(): boolean {
     this.list.add(this.newName);

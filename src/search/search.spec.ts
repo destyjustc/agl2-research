@@ -8,7 +8,7 @@ import {
 import {Component} from 'angular2/core';
 import {DOM} from 'angular2/src/platform/dom/dom_adapter';
 import {SearchComponent} from './search.component';
-import {NameList} from '../../common/services/name-list.service';
+import {NameListService} from '../common/services/name-list.service';
 
 
 export function main() {
@@ -25,7 +25,7 @@ export function main() {
               return searchInstance.list.names.length;
             };
 
-            expect(searchInstance.list).toEqual(jasmine.any(NameList));
+            expect(searchInstance.list).toEqual(jasmine.any(NameListService));
             expect(nameListLen()).toEqual(4);
             expect(DOM.querySelectorAll(searchDOMEl, 'li').length).toEqual(nameListLen());
 
@@ -43,7 +43,7 @@ export function main() {
 }
 
 @Component({
-  providers: [NameList],
+  providers: [NameListService],
   selector: 'test-cmp',
   template: '<search></search>',
   directives: [SearchComponent]

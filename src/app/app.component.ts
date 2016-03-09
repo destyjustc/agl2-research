@@ -8,11 +8,11 @@ import {DashboardComponent} from '../dashboard/dashboard.component';
 import {SearchComponent} from '../search/search.component';
 import {EventReviewComponent} from '../event-review/event-review.component';
 import {AssetInvestigationComponent} from '../asset-investigation/asset-investigation.component';
-import {NameList} from '../common/services/name-list.service';
+import {NameListService} from '../common/services/name-list.service';
 
 @Component({
   selector: 'app',
-  viewProviders: [NameList],
+  viewProviders: [NameListService],
   moduleId: module.id,
   templateUrl: './app.html',
   styleUrls: ['./app.css'],

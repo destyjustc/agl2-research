@@ -1,4 +1,4 @@
-export class NameList {
+export class NameListService {
   names = ['Angular', 'Angular2', 'React', 'Wahahaha', 'test'];
 
   get(): string[] {
